@@ -36,4 +36,24 @@ module.exports = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
+
+
+
+
+  // ℹ️ Middleware that adds a "req.session" information and later to check that you are who you say you are 😅
+  // app.use(
+  //   session({
+  //     secret: process.env.SESSION_SECRET || "super hyper secret key",
+  //     resave: false,
+  //     saveUninitialized: false,
+  //     store: MongoStore.create({
+  //       mongoUrl: MONGO_URI,
+  //     }),
+  //   })
+  // );
 };
+
+
+
+
+
