@@ -3,10 +3,18 @@ const {Schema, model} = require("mongoose");
 const toiletSchema = new Schema({
     title: String,
     description: String,
-    // tasks: [{
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Task"
-    // }]
+    // rating: {
+    //       type: Number,
+    //       required: true,
+    //       min: 1,
+    //       max: 10
+    //     },
+    // photo: String,
+    // Location: String
+            
+        
+    
+      
 });
 
 module.exports = model("Toilet", toiletSchema);
