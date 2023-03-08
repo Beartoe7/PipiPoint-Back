@@ -6,10 +6,9 @@ const bcrypt = require("bcryptjs");
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 const saltRounds = 10;
 
-// POST| AUTH/SIGNUP
 router.post("/signup", (req, res, next) => {
 
-    const { username, password } = req.body;
+    const { username, password,  } = req.body;
 
     //comprobaciones de username y password
 
@@ -17,7 +16,7 @@ router.post("/signup", (req, res, next) => {
     .then(response => {
         console.log(response);
         if(response.length != 0) {
-            res.json({error: "el usuario ya existe"});
+            res.json({error: "The user already exists"});
             return;
         }
 
@@ -32,8 +31,6 @@ router.post("/signup", (req, res, next) => {
     .catch(err => next(err))
 });
 
-
-// POST| AUTH/LOGIN
 router.post("/login", (req, res, next) => {
 
     const {username, password} = req.body;
@@ -41,22 +38,21 @@ router.post("/login", (req, res, next) => {
     User.findOne({username})
     .then(result => {
         if(!result) {
-            res.json({error: "credenciales incorrectas - user"});
+            res.json({error: "Incorrect Credentials - user"});
             return;
         }
         if(!bcrypt.compareSync(password, result.password)) {
-            res.json({error: "credenciales incorrectas - pw"});
+            res.json({error: "Incorrect Credentials- pw"});
             return;
         }
 
-        let payload = {username, saludo: "Hola soy el payload de login"};
+        let payload = {username, saludo: "Hello I am the payload"};
         const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, { algorithm: "HS256", expiresIn: "24h" })
+      
         res.json({authToken});
     })
 });
 
-
-// GET| AUTH/VERIFY
 router.get("/verify", isAuthenticated, (req, res, next) => {
     res.json(req.payload);
 });

@@ -18,8 +18,8 @@ require("./config")(app);
 const toiletsRoutes = require("./routes/toilets.routes");
 app.use("/toilets", toiletsRoutes);
 
-// const authRoutes = require("./routes/auth.routes");
-// app.use("/auth", authRoutes);
+const authRoutes = require("./routes/auth.routes");
+app.use("/auth", authRoutes);
 
 // const userRoutes = require("./routes/user.routes");
 // app.use("/user", userRoutes);

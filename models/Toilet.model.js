@@ -9,7 +9,7 @@ const toiletSchema = new Schema({
     //       min: 1,
     //       max: 10
     //     },
-    // photo: String,
+    // imageUrl: String,
     // Location: String
             
         
